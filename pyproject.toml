@@ -27,12 +27,15 @@ dependencies = [
     "tiktoken>=0.5.1",
     "transformers==4.53.3",
     "torch>=2.6.0",
-    "scikit-learn==1.6.1",
+    "scikit-learn<=1.9.1",
     "datasets==3.4.1",
 
     # Document processing and parsing
     "docling",
     "chonkie",
+
+    # Hungarian lemmatization
+    "huspacy<=0.12.1",
 
     # Configuration and data models
     "pydantic>=2.0.0",
@@ -103,4 +106,5 @@ ignore = ["E501"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 asyncio_mode = "auto"

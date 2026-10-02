@@ -1,0 +1,20 @@
+{"qid": "oos_01", "split": "dev", "legal_domain": "family", "query": "Mennyi ideig kell fizetni gyermektartást, ha a gyermek felsőfokú tanulmányokat folytat?"}
+{"qid": "oos_02", "split": "test", "legal_domain": "family", "query": "Milyen feltételekkel lehet közös megegyezéssel válni, ha a házastársaknak kiskorú gyermekük van?"}
+{"qid": "oos_03", "split": "dev", "legal_domain": "inheritance", "query": "Ki örököl, ha az elhunytnak nincs végrendelete, és csak a túlélő házastárs és egy testvér maradt utána?"}
+{"qid": "oos_04", "split": "test", "legal_domain": "inheritance", "query": "Milyen alaki követelményeknek kell megfelelnie egy saját kézzel írt végrendeletnek?"}
+{"qid": "oos_05", "split": "dev", "legal_domain": "criminal", "query": "Mekkora büntetés szabható ki ittas járművezetésért, ha a vezető balesetet is okozott?"}
+{"qid": "oos_06", "split": "test", "legal_domain": "criminal", "query": "Mikor évül el egy lopás miatti büntetőeljárás?"}
+{"qid": "oos_07", "split": "dev", "legal_domain": "traffic", "query": "Hány büntetőpont után vonják be a vezetői engedélyt?"}
+{"qid": "oos_08", "split": "test", "legal_domain": "traffic", "query": "Milyen sebességkorlátozás vonatkozik a lakott területen belüli utakra személygépkocsik esetén?"}
+{"qid": "oos_09", "split": "dev", "legal_domain": "tax", "query": "Mekkora a személyi jövedelemadó mértéke, és milyen kedvezmény jár a négy gyermeket nevelő anyáknak?"}
+{"qid": "oos_10", "split": "test", "legal_domain": "tax", "query": "Hogyan kell bevallani az ingatlan bérbeadásából származó jövedelmet?"}
+{"qid": "oos_11", "split": "dev", "legal_domain": "property", "query": "Felmondhatja-e a bérbeadó a lakásbérleti szerződést, ha a bérlő két hónapja nem fizet bérleti díjat?"}
+{"qid": "oos_12", "split": "test", "legal_domain": "property", "query": "Milyen költségek terhelik a vevőt egy használt lakás adásvételekor?"}
+{"qid": "oos_13", "split": "dev", "legal_domain": "labor", "query": "Hány nap szabadság jár egy 45 éves munkavállalónak egy naptári évben?"}
+{"qid": "oos_14", "split": "test", "legal_domain": "labor", "query": "Mennyi a felmondási idő, ha a munkáltató tíz év munkaviszony után mondja fel a szerződést?"}
+{"qid": "oos_15", "split": "dev", "legal_domain": "consumer", "query": "Hány napon belül lehet elállni egy webáruházban vásárolt cipő megvásárlásától?"}
+{"qid": "oos_16", "split": "test", "legal_domain": "social", "query": "Milyen feltételekkel jár a csecsemőgondozási díj, és mennyi ideig folyósítják?"}
+{"qid": "oos_17", "split": "dev", "legal_domain": "corporate", "query": "Mekkora a minimális törzstőke egy korlátolt felelősségű társaság alapításakor?"}
+{"qid": "oos_18", "split": "test", "legal_domain": "admin", "query": "Hogyan lehet fellebbezni egy építési engedélyt elutasító határozat ellen?"}
+{"qid": "oos_19", "split": "dev", "legal_domain": "constitutional", "query": "Hány képviselőből áll az Országgyűlés, és milyen gyakran tartanak választást?"}
+{"qid": "oos_20", "split": "test", "legal_domain": "health", "query": "Kötelező-e a gyermekek védőoltása, és milyen szankció jár az elmulasztásáért?"}
