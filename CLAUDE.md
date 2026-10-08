@@ -15,6 +15,7 @@ Only some of the spec exists in code. Check before assuming a class is there.
 | Piece | Status |
 |---|---|
 | `HungarianBM25Provider` ([verbatim_rag/hungarian_bm25.py](verbatim_rag/hungarian_bm25.py)) | Written, **untracked** in git |
+| Retrieval eval runner ([evaluation/hu_legal/run_retrieval.py](evaluation/hu_legal/run_retrieval.py)) | Written; Recall/MRR for sparse, dense, fused only. No reranking, F1, abstention or assertion metrics yet |
 | Hungarian eval set builder ([evaluation/hu_legal/](evaluation/hu_legal/)) | Committed, with tests |
 | Qwen3-Embedding dense provider (subclass of `SentenceTransformersProvider`, `prompt_name="query"` in `embed_text` only, dim 1024) | Not yet written |
 | `Qwen3Reranker(BaseReranker)` (`Qwen/Qwen3-Reranker-0.6B`, `text_field="text"`, English answerhood instruction, `rerank_k=100` in / top 10 out) | Not yet written |
@@ -38,11 +39,14 @@ pytest tests/test_hu_eval_set.py::TestResolveQuote -v      # single class/test
 ruff check packages/core/verbatim_core/ verbatim_rag/ api/ tests/
 ruff format --check packages/core/verbatim_core/ verbatim_rag/ api/ tests/
 
+# Retrieval eval (BM25 / dense / fused; needs spacy, hu_core_news_lg and Qwen3-Embedding; CPU run takes hours)
+python -m evaluation.hu_legal.run_retrieval [--split test] [--limit N] [--skip-dense] [--tag NAME]
+
 # Build the Hungarian eval set (writes gitignored data/; CC BY-NC-ND 4.0 source licence)
 python -m evaluation.hu_legal.build_eval_set [--revision <hf-sha>] [--seed N]
 ```
 
-Ruff: line length 100, rules E/F/W/I, E501 ignored. pytest runs with `pythonpath = ["."]` (so `evaluation.*` imports work) and `asyncio_mode = "auto"`. CI only installs `packages/core` and runs network-free tests; anything needing HF models, spaCy models or Milvus must be tested separately and must not be added to the default CI path. The repo `.venv` currently lacks pytest, ruff and spacy; `pytest` and `ruff` otherwise come from `~/.local/bin`.
+Ruff: line length 100, rules E/F/W/I, E501 ignored. pytest runs with `pythonpath = ["."]` (so `evaluation.*` imports work) and `asyncio_mode = "auto"`. CI only installs `packages/core` and runs network-free tests; anything needing HF models, spaCy models or Milvus must be tested separately and must not be added to the default CI path. The repo `.venv` currently lacks pytest and ruff (`uvx ruff` works); `pytest` and `ruff` otherwise come from `~/.local/bin`.
 
 ## Architecture
 
