@@ -30,6 +30,7 @@ Phases: 0 eval set → 1 baseline (Qwen3 + Hungarian BM25 + sentence-rerank extr
 pip install -e packages/core/
 pip install -e ".[dev]"
 python -c "import huspacy; huspacy.download('hu_core_news_lg')"   # model used by HungarianBM25Provider
+# if that fails (old huspacy): pip install https://huggingface.co/huspacy/hu_core_news_lg/resolve/main/hu_core_news_lg-3.8.1-py3-none-any.whl
 
 # Tests / lint (same as CI)
 pytest tests/ -v

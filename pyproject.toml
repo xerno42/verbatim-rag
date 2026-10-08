@@ -36,6 +36,8 @@ dependencies = [
 
     # Hungarian lemmatization
     "huspacy<=0.12.1",
+    # hu_core_news_lg 3.8.x is built for spaCy 3.8; huspacy does not pull spaCy in itself.
+    "spacy>=3.8,<3.9",
 
     # Configuration and data models
     "pydantic>=2.0.0",
@@ -45,6 +47,12 @@ dependencies = [
     # Vector storage and search
     "pymilvus>=2.6.3",
     "pymilvus[milvus_lite]",
+    # milvus-lite 3.x rejects the vector-less metadata collection LocalMilvusStore
+    # creates, and its sparse IP search does not return exact inner products
+    # (breaks client-side BM25 ranking). 2.x imports pkg_resources, removed in
+    # setuptools 81. See docker/overrides.txt.
+    "milvus-lite<3",
+    "setuptools<81",
     
     # Embeddings
     "sentence-transformers>=5.0.0",

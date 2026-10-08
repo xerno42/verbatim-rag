@@ -20,6 +20,8 @@ from verbatim_rag.vector_stores import (
     VectorStore,
 )
 
+logger = logging.getLogger(__name__)
+
 
 class VerbatimIndex:
     """
@@ -598,6 +600,13 @@ class VerbatimIndex:
             if "sparse" in hybrid_weights and self.sparse_provider:
                 query_sparse = self.sparse_provider.embed_text(text)
 
+            if self._is_empty_sparse(query_sparse):
+                logger.info("Sparse query vector is empty; dropping 'sparse' from hybrid_weights")
+                query_sparse = None
+                hybrid_weights = {m: w for m, w in hybrid_weights.items() if m != "sparse"}
+                if not hybrid_weights:
+                    return []
+
             return self.vector_store.query(
                 dense_query=query_dense,
                 sparse_query=query_sparse,
@@ -643,6 +652,13 @@ class VerbatimIndex:
         if search_type in ("sparse", "hybrid") and self.sparse_provider:
             query_sparse = self.sparse_provider.embed_text(text)
 
+        if self._is_empty_sparse(query_sparse):
+            query_sparse = None
+            if query_dense is None:
+                return []
+            logger.info("Sparse query vector is empty; falling back to dense search")
+            search_type = "dense"
+
         return self.vector_store.query(
             dense_query=query_dense,
             sparse_query=query_sparse,
@@ -653,6 +669,13 @@ class VerbatimIndex:
             search_params=search_params,
             rrf_k=rrf_k,
         )
+
+    @staticmethod
+    def _is_empty_sparse(query_sparse: Optional[Dict[int, float]]) -> bool:
+        # A sparse provider returns {} when no query term is in its vocabulary
+        # (e.g. HungarianBM25Provider on an unseen or stop-word-only query).
+        # Searching with {} fails in the store, so callers drop the sparse leg.
+        return query_sparse is not None and len(query_sparse) == 0
 
     def get_document(self, document_id: str) -> Optional[Dict[str, Any]]:
         """

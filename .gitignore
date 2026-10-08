@@ -219,3 +219,6 @@ research-copilot/
 
 evaluation/hu_legal/data/
 evaluation/hu_legal/annotations/
+evaluation/hu_legal/runs/
+
+*bm25*stats*.json
